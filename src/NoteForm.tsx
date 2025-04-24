@@ -29,6 +29,7 @@ const NoteForm: React.FC<Props> = ({
 	setSelectedNote,
 }) => {
 	const [aiSummary, setAiSummary] = useState('');
+	const [summarizing, setSummarizing] = useState(false);
 	const [moodEmoji, setMoodEmoji] = useState('');
 
 	const { register, handleSubmit, reset, setValue, watch } = useForm<
@@ -56,6 +57,7 @@ const NoteForm: React.FC<Props> = ({
 	}, [selectedNote]);
 
 	const handleSummarize = async () => {
+		setSummarizing(true);
 		if (!content || content.length < 10) {
 			alert('Please write more content to generate a summary.');
 			return;
@@ -99,6 +101,7 @@ const NoteForm: React.FC<Props> = ({
 				localStorage.setItem('notes', JSON.stringify(updated));
 			}
 		}
+		setSummarizing(false);
 	};
 
 	const onSubmit = async (data: Omit<Note, 'id'>) => {
@@ -199,7 +202,7 @@ const NoteForm: React.FC<Props> = ({
 				/>
 
 				{aiSummary ? (
-					<div className='bg-gray-100 text-sm p-2 rounded h-28 overflow-y-scroll'>
+					<div className='bg-gray-100 text-sm p-2 rounded'>
 						<p className='font-semibold mb-1'>
 							🧠 AI Summary:
 						</p>
@@ -210,13 +213,15 @@ const NoteForm: React.FC<Props> = ({
 						type='button'
 						onClick={handleSummarize}
 						className={`w-full py-2 px-3 text-sm  transition ${
-							content
+							content || !summarizing
 								? 'bg-purple-600 text-white rounded hover:bg-purple-700'
 								: 'bg-purple-600/40 text-black'
 						}`}
-						disabled={!content}
+						disabled={!content || summarizing}
 					>
-						🧠 Summarize
+						{summarizing
+							? 'Summarizing...'
+							: '🧠 Summarize'}
 					</button>
 				)}
 
