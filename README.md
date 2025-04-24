@@ -31,6 +31,38 @@ src/
     ai.ts
 ```
 
+## AI Usage
+
+## AI Features in Smart Notes App
+The Smart Notes App integrates free and powerful AI services to enhance the note-taking experience:
+
+1. Summarization
+Powered by: OpenRouter (GPT-3.5) with fallback to DeepAI
+
+    Triggered manually by the user via a "🧠 Summarize" button
+
+    Returns a short, AI-generated summary of the note content
+
+    Immediately saved with the note in localStorage
+
+2. Sentiment Detection
+Powered by: Hugging Face (DistilBERT SST-2)
+
+    Analyzes the tone of the note and assigns an emoji mood:
+
+    😊 Positive
+
+    😞 Negative
+
+    😐 Neutral
+
+3. Smart Title Generation
+Custom logic extracts a meaningful title from the first sentence or line of the note
+
+    Triggered automatically on save if no title is provided
+
+    Would you like the full README template with this integrated, including tech stack, installation, and deployment sections?
+
 ## Getting Started
 
 ### Prerequisites
