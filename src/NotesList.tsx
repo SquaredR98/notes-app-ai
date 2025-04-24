@@ -13,7 +13,7 @@ type Props = {
 	setEditOrCreateNote?: (data: boolean) => void;
 };
 
-const Sidebar: React.FC<Props> = ({ onSelectNote, setEditOrCreateNote }) => {
+const NotesList: React.FC<Props> = ({ onSelectNote, setEditOrCreateNote }) => {
 	const [notes, setNotes] = useState<Note[]>([]);
 	const [query, setQuery] = useState('');
 
@@ -92,4 +92,4 @@ const Sidebar: React.FC<Props> = ({ onSelectNote, setEditOrCreateNote }) => {
 	);
 };
 
-export default Sidebar;
+export default NotesList;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NoteForm, { Note } from './NoteForm';
-import Sidebar from './Sidebar';
+import Sidebar from './NotesList';
 
 const MainLayout: React.FC = () => {
 	const [editOrCreateNote, setEditOrCreateNote] = useState(false);
